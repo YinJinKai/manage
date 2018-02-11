@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.attendance.mapper.WorkMapper">
+	<sql id="Base_Column_List">
+		wa.id,wa.user_name,wa.one_check,wa.two_check,wa.three_check,wa.four_check,wa.five_check,wa.six_check,wa.score,wa.time
+	</sql>
+	<resultMap id="WorkResult" type="com.attendance.model.WorkModel">
+		<result column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="create_by" property="createBy" />
+		<result column="update_by" property="updateBy" />
+		<result column="isdelete" property="deleted" />
+		<result column="state" property="state" />
+		<result column="order_by" property="orderBy" />
+		<result column="descr" property="descr" />
+		<result column="type" property="type" />
+		<result column="user_name" property="userName" />
+		<result column="one_check" property="oneCheck" />
+		<result column="two_check" property="twoCheck" />
+		<result column="three_check" property="threeCheck" />
+		<result column="four_check" property="fourCheck" />
+		<result column="five_check" property="fiveCheck" />
+		<result column="six_check" property="sixCheck" />
+		<result column="score" property="score" />
+		<result column="time" property="time" />
+		<result property="trueName" column="true_name" />
+		<association property="classInfor" javaType="com.system.model.ClassModel">
+			<result property="className" column="class_name" />
+		</association>
+		<association property="userInfor" javaType="com.system.model.UserModel">
+			<result property="trueName" column="true_name" />
+		</association>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and wa.id = #{id}
+			</if>
+			<if test="userName != null and userName != ''">
+				and wa.user_name = #{userName}
+			</if>
+			<if test="oneCheck != null and oneCheck != ''">
+				and wa.one_check = #{oneCheck}
+			</if>
+			<if test="twoCheck != null and twoCheck != ''">
+				and wa.two_check = #{twoCheck}
+			</if>
+			<if test="threeCheck != null and threeCheck != ''">
+				and wa.three_check = #{threeCheck}
+			</if>
+			<if test="fourCheck != null and fourCheck != ''">
+				and wa.four_check = #{fourCheck}
+			</if>
+			<if test="fiveCheck != null and fiveCheck != ''">
+				and wa.five_check = #{fiveCheck}
+			</if>
+			<if test="sixCheck != null and sixCheck != ''">
+				and wa.six_check = #{sixCheck}
+			</if>
+			<if test="score != null and score != ''">
+				and wa.score = #{score}
+			</if>
+			<if test="time != null and time != ''">
+				and wa.time = #{time}
+			</if>
+			<if test="startTime != null and endTime !=null">
+				and wa.time between #{startTime} and #{endTime}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectAll" resultMap="WorkResult" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		,u.true_name,c.class_name
+		FROM manage.work_attendance wa
+		left join
+		manage.user u
+		on wa.user_name=
+		u.user_name
+		left join manage.class c
+		on
+		u.class_code=c.class_code
+		<include refid="Example_Where_Clause" />
+	
+
+	</select>
+
+	<insert id="insert" parameterType="Object">
+		insert into
+		manage.work_attendance
+		(user_name,one_check,two_check,three_check,four_check,five_check,six_check,score,time,create_time,
+		update_time,create_by,update_by,isdelete,state,order_by,descr,type)
+		values(#{userName},#{oneCheck},#{twoCheck},#{threeCheck},#{fourCheck},#{fiveCheck},#{sixCheck},#{score},#{time},#{createTime},#{updateTime},#{createBy},#{updateBy},#{deleted},#{state},#{orderBy},#{descr},#{type})
+	</insert>
+	<update id="update">
+		UPDATE manage.work_attendance SET
+		<trim suffixOverrides=",">
+			<if test="userName != null and userName !='' ">
+				user_name = #{userName},
+			</if>
+			<if test="oneCheck != null and  oneCheck !='' ">
+				one_check = #{oneCheck},
+			</if>
+			<if test="twoCheck != null and twoCheck !=''">
+				two_check = #{twoCheck},
+			</if>
+			<if test="threeCheck != null and threeCheck !=''">
+				three_check = #{threeCheck},
+			</if>
+			<if test="fourCheck != null and fourCheck != ''">
+				four_check = #{fourCheck},
+			</if>
+			<if test="fiveCheck != null and fiveCheck != '' ">
+				five_check = #{fiveCheck},
+			</if>
+
+			<if test="sixCheck != null and sixCheck!=''">
+				six_check = #{sixCheck},
+			</if>
+			<if test="score != null and score !='' ">
+				score = #{score},
+			</if>
+			<if test="time != null and time !=''">
+				time = #{time},
+			</if>
+		</trim>
+		where id = #{id}
+
+
+	</update>
+</mapper>

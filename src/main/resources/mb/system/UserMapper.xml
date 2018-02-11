@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.UserMapper">
+	<sql id="Base_Column_List">
+		u.id,u.create_time, u.update_time, u.create_by, u.update_by, u.isdelete, u.state,
+		u.order_by, u.descr,
+		u.type,u.user_name,u.password,u.true_name,u.role_code,u.class_code
+	</sql>
+	<resultMap id="UserResult" type="com.system.model.UserModel">
+		<result column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="create_by" property="createBy" />
+		<result column="update_by" property="updateBy" />
+		<result column="isdelete" property="deleted" />
+		<result column="state" property="state" />
+		<result column="order_by" property="orderBy" />
+		<result column="descr" property="descr" />
+		<result column="type" property="type" />
+		<result column="user_name" property="userName" />
+		<result column="password" property="password" />
+		<result column="true_name" property="trueName" />
+		<result column="role_code" property="roleCode" />
+		<result column="class_code" property="classCode" />
+		<result column="role_name" property="roleName" />
+		<result column="class_name" property="className" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and u.id = #{id}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and u.create_time = #{createTime}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and u.update_time = #{updateTime}
+			</if>
+			<if test="createBy != null and createBy != 0">
+				and u.create_by = #{createBy}
+			</if>
+			<if test="updateBy != null and updateBy != 0">
+				and u.update_by = #{updateBy}
+			</if>
+			<!-- <if test="deleted != null and deleted != 0"> -->
+			<!-- and isdelete = #{deleted} -->
+			<!-- </if> -->
+			<!-- <if test="state != null and state!=0"> -->
+			<!-- and state = #{state} -->
+			<!-- </if> -->
+			<if test="descr != null and descr !=''">
+				and u.descr = #{descr}
+			</if>
+			<if test="type != null and type != 0">
+				and u.type = #{type}
+			</if>
+			<if test="userName != null and userName !=''">
+				and u.user_name = #{userName}
+			</if>
+			<if test="password != null and password !=''">
+				and u.password = #{password}
+			</if>
+			<if test="trueName != null and trueName !=''">
+				and u.true_name like CONCAT('%', #{trueName}, '%')
+			</if>
+			<if test="roleCode != null and roleCode !=''">
+				and u.role_code = #{roleCode}
+			</if>
+			<if test="classCode != null and classCode !=''">
+				and u.class_code = #{classCode}
+			</if>
+		</trim>
+	</sql>
+
+
+	<select id="selectAll" resultMap="UserResult" parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List" />
+		,r.role_name,c.class_name
+		FROM manage.user u
+		left join manage.role r on u.role_code=r.id
+		left join manage.class c on c.class_code=u.class_code or
+		c.user_name=u.user_name
+		<include refid="Example_Where_Clause" />
+			<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != '' and mysqlQueryCondition !=''and mysqlQueryCondition!=null ">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+	<select id="selectAllst" resultMap="UserResult" parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List" />
+		,r.role_name,c.class_name
+		FROM manage.user u
+		left join manage.role r on u.role_code=r.id
+		left join manage.class c on c.class_code=u.class_code or
+		c.user_name=u.user_name
+		<include refid="Example_Where_Clause" />
+	</select>
+		<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1)
+		from manage.user u
+		<include refid="Example_Where_Clause" />
+		<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+	<insert id="insert">
+		INSERT INTO
+		manage.user(user_name,
+		password,true_name,role_code,class_code)
+		VALUES
+		(#{userName},#{password},#{trueName},#{roleCode},#{classCode})
+	</insert>
+		<update id="update">
+		UPDATE manage.user SET
+		<trim suffixOverrides=",">
+			<if test="userName != null and userName !=''">
+				user_name = #{userName},
+			</if>
+			<if test="password != null and password !=''">
+				password = #{password},
+			</if>
+			<if test="trueName != null and trueName !=''">
+				true_name = #{trueName},
+			</if>
+			<if test="roleCode != null and roleCode !=''">
+				role_code = #{roleCode},
+			</if>
+			<if test="classCode != null and classCode !=''">
+				class_code = #{classCode},
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+
+</mapper>

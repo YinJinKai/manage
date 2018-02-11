@@ -1,0 +1,34 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.title {
+	margin-right: 10px;
+}
+.titler{
+	margin-left: 10px;
+}
+.levelbox{
+	margin-top: 20px;
+	width: 100%;
+	text-align: center;
+}
+.upbox{
+	width:100%;
+	text-align: center;
+	margin-top: 20px;
+	
+}
+.datibox{
+text-align: center;
+margin-top: 30px;
+}
+.countInfor{
+	width:100%;
+	height:30px;
+	margin-top:60px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 20px;
+	
+}

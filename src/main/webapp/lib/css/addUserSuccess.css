@@ -1,0 +1,74 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+a {
+    text-decoration: none;
+}
+.context {
+	width: 100%;
+}
+
+.tip {
+	width: 60%;
+	height: 350px;
+	margin: 0 auto;
+}
+
+.success {
+	width: 70px;
+	height: 70px;
+	display: inline-block;
+	vertical-align: middle;
+	background: url(../img/success.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.false {
+	width: 70px;
+	height: 70px;
+	display: inline-block;
+	vertical-align: middle;
+	background: url(../img/error.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.tip .tishi a {
+	margin-left: 10px;
+	font-family: "黑体";
+	font-size: 35px;
+	font-weight: bold;
+}
+
+.errorusername {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 300px;
+	height: 300px;
+}
+
+.tishi {
+	width: 100%;
+	margin-top: 100px;
+	text-align: center;
+	margin-bottom: 30px;
+}
+.succfont{
+	display:block;
+	width:100px;
+	height: 20px;
+	font-size: 18px;
+	margin: 0 auto;
+	cursor: pointer;
+	font-weight: bold;
+	color:black;
+	
+	
+}
+.wornguser{
+	width: 100%;
+	text-align: center;
+}
+.fial{
+		margin-top:70px;
+}

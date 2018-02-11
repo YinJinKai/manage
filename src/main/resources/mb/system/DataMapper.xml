@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.DataMapper">
+	<sql id="Base_Column_List">
+   id,type,state_name,code
+	</sql>
+	<resultMap id="DataResult" type="com.system.model.DataModel">
+		<result column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="create_by" property="createBy" />
+		<result column="update_by" property="updateBy" />
+		<result column="isdelete" property="deleted" />
+		<result column="state" property="state" />
+		<result column="order_by" property="orderBy" />
+		<result column="descr" property="descr" />
+		<result column="type" property="type" />
+        <result column="code" property="code" />
+        <result column="state_name" property="stateName" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and id = #{id}
+			</if>
+           <if test="type != null and type !=0">
+				and type = #{type}
+			</if>
+			 <if test="stateName != null and stateName !=''">
+				and state_name = #{stateName}
+			</if>
+			 <if test="code != null and code !=''">
+				and code = #{code}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectAll" resultMap="DataResult" parameterType="Object">
+		select
+		 <include refid="Base_Column_List" />
+	    from manage.base_data
+        <include refid="Example_Where_Clause" />
+
+	</select>
+</mapper>

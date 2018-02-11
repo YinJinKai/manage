@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.RolePermissionRelMapper">
+	<sql id="Base_Column_List">
+		id,menu_code,role_code
+	</sql>
+	<resultMap id="RelResult" type="com.system.model.RolePermissionRelModel">
+		<result column="id" property="id" />
+        <result column="menu_code" property="menuCode" />
+		<result column="role_code" property="roleCode" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and id = #{id}
+			</if>
+			<if test="menuCode != null and menuCode != ''">
+				and menu_code = #{menuCode}
+			</if>
+			<if test="roleCode != null and roleCode != ''">
+				and role_code = #{roleCode}
+			</if>
+		</trim>
+	</sql>
+
+
+	<select id="selectAll" resultMap="RelResult" parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List" />
+		from manage.role_permission_rel
+		<include refid="Example_Where_Clause" />
+			<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+	<insert id="insert">
+		INSERT INTO
+		manage.role_permission_rel(menu_code,role_code)
+		VALUES
+		(#{menuCode},#{roleCode})
+	</insert>
+		<update id="update">
+		UPDATE manage.role_permission_rel SET
+		<trim suffixOverrides=",">
+			<if test="menuCode != null and menuCode !=''">
+				menu_code = #{menuCode},
+			</if>
+			<if test="roleCode != null and roleCode !=''">
+				role_code = #{password},
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+		<delete id="delete">
+		DELETE FROM manage.role_permission_rel WHERE id=#{id}
+	</delete>
+	</mapper>

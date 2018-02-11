@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.MenuMapper">
+	<sql id="Base_Column_List">
+		p.id,p.create_time, p.update_time, p.create_by, p.update_by,
+		p.isdelete, p.state,
+		p.order_by,p.descr,
+		p.type,p.permission_name,p.url,p.pccode,p.menu_code
+	</sql>
+	<resultMap id="MenuResult" type="com.system.model.MenuModel">
+		<result column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="create_by" property="createBy" />
+		<result column="update_by" property="updateBy" />
+		<result column="isdelete" property="deleted" />
+		<result column="state" property="state" />
+		<result column="order_by" property="orderBy" />
+		<result column="descr" property="descr" />
+		<result column="type" property="type" />
+		<result column="permission_name" property="permissionName" />
+		<result column="url" property="url" />
+		<result column="pccode" property="pcCode" />
+		<result column="menu_code" property="menuCode" />
+		<result column="role_code" property="roleCode" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and p.id = #{id}
+			</if>
+			<if test="permissionName != null and permissionName != ''">
+				and p.permission_name = #{permissionName}
+			</if>
+			<if test="url != null and url != ''">
+				and p.url = #{url}
+			</if>
+			<if test="pcCode != null and pcCode != ''">
+				and p.pccode = #{pcCode}
+			</if>
+			<if test="menuCode != null and menuCode != ''">
+				and p.menu_code = #{menuCode}
+			</if>
+			<if test="roleCode != null and roleCode != 0">
+				and rp.role_code = #{roleCode}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectAll" resultMap="MenuResult" parameterType="Object">
+		select
+		 <include refid="Base_Column_List" />,
+		 rp.role_code
+	    from manage.permission p 
+		left join manage.role_permission_rel rp on p.menu_code=rp.menu_code 
+		
+		<include refid="Example_Where_Clause" />
+
+	</select>
+	<select id="selectAllmenu" resultMap="MenuResult" parameterType="Object">
+		select
+		 <include refid="Base_Column_List" />
+	    from manage.permission p 
+		<include refid="Example_Where_Clause" />
+
+	</select>
+	<insert id="insert">
+		INSERT INTO
+		manage.permission(permission_name,
+		url,pccode,menu_code)
+		VALUES
+		(#{permissionName},#{url},#{pcCode},#{menuCode})
+	</insert>
+		<update id="update">
+		UPDATE manage.permission SET
+		<trim suffixOverrides=",">
+			<if test="permissionName != null and permissionName !=''">
+				permission_name = #{permissionName},
+			</if>
+			<if test="url != null and url !=''">
+				url = #{url},
+			</if>
+			<if test="pcCode != null and pcCode !=''">
+				pccode = #{pcCode},
+			</if>
+			<if test="menuCode != null and menuCode !=''">
+				menu_code = #{menuCode},
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+	<delete id="delete">
+		DELETE FROM manage.permission WHERE id=#{id}
+	</delete>
+</mapper>

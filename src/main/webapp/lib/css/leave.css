@@ -1,0 +1,51 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+ul,li{
+	list-style: none;
+}
+
+.loginbody_mask {
+	display: none;
+	position:absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	background-color: rgba(0, 0, 0, 0.8);
+
+}
+.addbox{
+	width:400px;
+	height:40px;
+	margin:0 auto;
+	margin-top: 10px;
+}
+.lable{
+	float: left;
+}
+.inbox{
+	float:right;
+}
+.why{
+	height:180px;
+}
+.leave_btn{
+	width: 200px;
+	margin: 0 auto;
+}
+.menubox{
+	width: 100%;
+}
+.menubox li{
+	width:100%;
+	margin-top: 20px;
+	text-align: center;
+}
+.menubox li a{
+	font-weight: bold;
+}

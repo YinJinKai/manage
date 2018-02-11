@@ -1,0 +1,333 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	overflow: hidden;
+}
+
+.desk {
+	width: 100%;
+	height: 100%;
+	background: black no-repeat fixed;
+	background-size: 100% 100%;
+}
+
+.header {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	height: 30px;
+	background-color: rgba(19, 23, 28, 0.8);
+}
+
+.container {
+	width: 1226px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.c-nav {
+	float: left;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+}
+
+.c-nav a {
+	color: white;
+}
+
+.container:before, .container:after {
+	content: " ";
+	display: table;
+}
+
+.container:after {
+	clear: both;
+}
+
+.loginbody {
+	position: relative;
+	width: 100%;
+	background-color: #000000;
+}
+
+.under_menu {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 70px;
+}
+
+.in_menu {
+	position: relative;
+	border-radius: 5px 5px 0 0;
+	width: 835px;
+	height: 70px;
+	background-color: rgba(255, 255, 255, 0.5);
+	margin: 0 auto;
+	margin-bottom: 0;
+}
+
+.menu_tab {
+	display: inline-block;
+	width: 55px;
+	height: 55px;
+	background-color: chocolate;
+	float: left;
+	margin-right: 60px;
+	margin-bottom: 8px;
+}
+
+.y_frame {
+	display: none;
+	width: 100%;
+	height: 1679px;
+	position: fixed !important;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1550;
+}
+
+.menu_div {
+	position: absolute;
+/* 	width: 800px; */
+	/*background-color: #0000FF;*/
+	left: 50%;
+	margin-left: -155px;
+	bottom: 0;
+	float: left;
+}
+
+.login_btn {
+	display: inline-block;
+	cursor: pointer;
+	width: 55px;
+	height: 55px;
+}
+
+.App_desk {
+	position: absolute;
+	left: 0;
+	top: 40px;
+	width: 100%;
+	height: 400px;
+}
+
+ul, li {
+	list-style: none;
+}
+/* app */
+.shortcut {
+	position: relative;
+	display: inline-block;
+	width: 80px;
+	cursor: pointer;
+	padding: 0;
+	transition: all 0.5s;
+}
+
+.hover {
+	border-radius: 5px;
+	background-color: rgba(255, 251, 240, 0.5);
+}
+
+.hover div {
+	color: black;
+}
+
+.app2 {
+	
+	width: 80px;
+	cursor: pointer;
+	padding: 0;
+	transition: all 0.5s;
+	float:left;
+	margin-bottom: 8px;
+}
+
+.icon {
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	margin: 0 auto;
+	color: white;
+	box-sizing: border-box;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	text-align: center;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	display: block;
+	font-size: 37px;
+	line-height: 50px;
+}
+
+.title {
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	line-height: 18px;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.st {
+	border-radius: 5px 5px 0 0;
+	box-shadow: 0px 0px 5px #000;
+}
+
+.bst {
+	border-radius: 0 0 5px 5px;
+}
+
+.tcombo {
+	display: none;
+	position: absolute;
+	left: 15px;
+	bottom: -469px;
+	width: 240px;
+	height: 280px;
+	background-color: rgba(255, 255, 255, 1);
+	border-radius: 10px;
+	z-index: 1500;
+}
+
+.dao {
+	width: 100%;
+	height: 39px;
+	border-bottom: 1px solid darkgray;
+	line-height: 39px;
+}
+
+.biao {
+	width: 32px;
+	height: 20px;
+	display: block;
+	margin: 0 auto;
+	line-height: 40px;
+	color: #000000;
+}
+
+.qian {
+	margin-left: 10px;
+	font-size: 14px;
+}
+
+.qiand {
+	float: right;
+	margin-right: 10px;
+	margin-top: 8px;
+}
+
+.qiandao_mask {
+	display: none;
+	width: 100%;
+	height: 1679px;
+	position: fixed;
+	background-color: rgba( 128,128,126, 0.9);
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+}
+
+.tui {
+	margin-top: 161px;
+	border: 0;
+}
+.setting{
+	display: none;
+	position: absolute;
+	width: 240px;
+	height: 280px;
+	background-color: rgba(255, 255, 255, 1);
+	border-radius: 10px;
+	z-index: 1500;
+	left: 393px;
+	bottom: 70px;
+}
+.loginout{
+	vertical-align:middle;
+	width:30px;
+	height:30px;
+	display:inline-block;
+	background: url(../img/guanji.png) no-repeat;
+    background-size: 100% 100%;
+}
+.dao_font{
+	margin-left: 59px;
+	
+}
+.daofirst{
+	cursor: pointer;
+}
+.daofirst:hover{
+	background: red;
+	color:white;
+}
+.showSign{
+}
+.deletemenu{
+	position: absolute;
+	width:25px;
+	height:25px;
+	background: url(../img/error.png) no-repeat;
+	background-size: 100% 100%;
+	left: 5px;
+	top: -7px;
+	
+}
+.updateMenu{
+	position: absolute;
+	width:25px;
+	height:25px;
+	background: url(../img/nedit.png) no-repeat;
+	background-size: 100% 100%;
+	right: 5px;
+	top: -7px;
+	
+}
+.deletemenu :hover{
+	width:35px;
+	height:35px;
+	
+	
+	
+	
+}
+.dobox{
+	width:250px;
+	text-align: center;
+	
+	margin: 0 auto;
+	margin-top: 20px;
+	
+	
+	
+	
+	
+	
+	
+}
+.dobtn{
+	margin-bottom: 10px;
+}
+.boxtitle{
+	display:inline-block;
+	width:75px;
+	text-align: right;
+}
+.app2:hover{
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 15px;
+}
+.shortcut:hover{
+	background-color: rgba(0, 0, 0, 0.4);
+	border-radius: 15px;
+}

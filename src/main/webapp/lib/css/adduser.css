@@ -1,0 +1,230 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #ececec;
+}
+
+a {
+	text-decoration: none;
+}
+
+ul, li {
+	list-style: none;
+}
+
+.download {
+	width: 100%;
+}
+
+.download .ta1 {
+	float: right;
+	width: 150px;
+	margin-top: 50px;
+	margin-right: 200px;
+}
+
+.download .ta1 a {
+	font-size: 18px;
+	font-weight: bold;
+	color: #666;
+}
+
+.upload {
+	position: relative;
+	top:150px;
+}
+
+.uptitle {
+	width: 126px;
+	font-size: 25px;
+	margin: 0 auto;
+	color: #666;
+}
+
+.upbox {
+	margin: 0 auto;
+	margin-top: 20px;
+	width: 336px;
+}
+
+.fb {
+	position: relative;
+	padding: 4px 10px;
+	height: 20px;
+	line-height: 20px;
+	border: 2px solid #999;
+	text-decoration: none;
+	color: #666;
+	border-radius: 18px;
+}
+
+.change {
+	opacity: 0;
+}
+
+.fbbtn {
+	outline: none;
+	border: 0;
+	background: #ececec;
+	color: #666;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.fb:hover {
+	border: 1px solid black;
+}
+
+.fbbtn:hover {
+	color: #df3434;
+}
+
+.filename {
+	position: absolute;
+	width: 250px;
+	height: 28px;
+	border: none;
+	left: 11px;
+	top: 1px;
+	background: #ececec;
+	color: #ff6700;
+	font-weight: bold;
+}
+.ta1 em{
+	display:inline-block;
+	width:40px;
+	height:40px;
+	background: red;
+	margin-left: 5px;
+	vertical-align: middle;
+	background: url(../img/xiazai.png) no-repeat;
+	background-size: 100% 100%;
+	cursor: pointer;
+	
+	
+}
+.ta3{
+	float: right;
+	width: 150px;
+	margin-top: 50px;
+	margin-right: 110px;
+	
+	
+	
+}
+.ta3 a{
+    font-size: 18px;
+	font-weight: bold;
+	color: #666;
+}
+.ta3 em{
+	display:inline-block;
+	width:40px;
+	height:40px;
+	background: red;
+	margin-left: 5px;
+	vertical-align: middle;
+	background: url(../img/tongji.png) no-repeat;
+	background-size: 100% 100%;
+	cursor: pointer;
+	
+}
+.ta2{
+	position: relative;
+	margin-right: 290px;
+	float: right;
+	width: 150px;
+	margin-top: 50px;
+}
+.ta2{
+		font-size: 18px;
+	font-weight: bold;
+	color: #666;
+}
+.ta2 em{
+	display:inline-block;
+	width:40px;
+	height:40px;
+	background: red;
+	margin-left: 5px;
+	vertical-align: middle;
+	background: url(../img/wd.png) no-repeat;
+	background-size: 100% 100%;
+	cursor: pointer;
+	
+}
+#databox{
+	padding:5px 5px;
+	display: none;
+	position: absolute;
+	width:150px;
+	left:-15px;
+	top:40px;
+	z-index: 1000;
+	text-align: right;
+	background-color:gray;
+	border-radius: 18px;
+	
+}
+#databox a{
+	color:#ececec;
+}
+.databox{
+	display: block;
+	margin-top: 10px;
+	
+}
+#databox a :hover{
+	background-color:black;
+	border-radius: 5px;
+}
+.databox em{
+	display:inline-block;
+	width:40px;
+	height:40px;
+	background: red;
+	margin-left: 5px;
+	vertical-align: middle;
+	background: url(../img/cd.png) no-repeat;
+	background-size: 100% 100%;
+	cursor: pointer;
+}
+.hide{
+}
+.tongjibiao{
+	display:none;
+	position: absolute;
+	left:430px;
+	top:-20px;
+	width:400px;
+	height:400px;
+	z-index: 10000;
+	
+	
+	
+	
+	
+}
+.closetongji{
+	position:absolute;
+	right:-40px;
+	top:-5px;
+	width:30px;
+	height:30px;
+	display: inline-block;
+	cursor: pointer;
+	background: url(../img/closetip.png) no-repeat center;
+	background-size: 100% 100%;
+}
+.bg-layer {
+	display:none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0,0.8);
+}

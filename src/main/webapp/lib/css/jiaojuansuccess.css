@@ -1,0 +1,29 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.context {
+	width: 100%;
+}
+.tip{
+	width: 60%;
+	height:350px;
+	margin: 0 auto;
+	text-align: center;
+	line-height: 350px;
+}
+.tip em{
+	width: 70px;
+	height: 70px;
+	display: inline-block;
+	vertical-align: middle;
+	background: url(../img/success.png) no-repeat;
+	background-size: 100% 100%;
+}
+.tip a{
+	margin-left: 10px;
+	font-family: "黑体";
+	font-size: 35px;
+	font-weight: bold;
+	
+}

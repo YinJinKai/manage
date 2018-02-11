@@ -1,0 +1,185 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Microsoft JhengHei", 'Microsoft Yahei';
+	font-size: 14px;
+	color: #000000;
+	font-weight: bold;
+}
+
+ul, li {
+	list-style: none;
+}
+
+.q_th {
+	font-size: 18px;
+}
+
+label {
+	font-size: 18px;
+}
+
+.context {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	/*background-color:red;*/
+}
+
+.q_title {
+	width: 100%;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	font-size: 20px;
+}
+
+.dobtn {
+	position:relative;
+	border-top: 1px dashed gray;
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border-radius: 30px;
+}
+
+.bbtn {
+	display: inline-block;
+	width: 120px;
+	height: 50px;
+	border: 1px solid gray;
+	margin-top: 70px;
+	margin-left: 20px;
+	line-height: 50px;
+	border-radius: 30px;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.close:hover {
+	color: white;
+	background-color: black;
+	border: 1px solid black;
+}
+
+.save:hover {
+	color: white;
+	background-color: red;
+	border: 1px solid red;
+}
+
+.q_tm {
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	border-top: 1px dashed gray;
+	margin-bottom: 20px;
+	/*background-color: blue;*/
+}
+
+.q_hd ul {
+	width: 100%;
+	height: 50px;
+}
+
+.q_hd li {
+	float: left;
+	width: 50px;
+	height: 30px;
+	border: 1px solid gray;
+	text-align: center;
+	line-height: 30px;
+	margin-left: 10px;
+	border-radius: 30px;
+	cursor: pointer;
+}
+
+.q_hd li:hover {
+	background-color: green;
+	color: white;
+	border: red;
+}
+
+.qtextbox {
+	outline: none;
+	width: 400px;
+	height: 114px;
+	margin-top: 40px;
+	vertical-align: top;
+	resize: none;
+	border: 1px solid gray;
+	border-radius: 30px;
+	padding: 20px;
+}
+
+.left {
+	margin-top: 10px;;
+	margin-left: 60px;
+}
+
+.t_xx {
+	margin-left: 60px;
+}
+
+.t_xx div {
+	margin-bottom: 15px;
+}
+
+.tm {
+	margin-left: 20px;
+}
+
+.q_th {
+	margin-top: 20px;
+}
+.active{
+	background-color: red;
+	color: yellow;
+	border: red;
+}
+.texterror{
+	border: 2px solid red;
+}
+.eli{
+	background-color: red;
+}
+.no-select-tip {
+	display:none;
+	position: absolute;
+	left:245px;
+	top:36px;
+	width: 150px;
+	height: 25px;
+	line-height: 25px;
+	background-color: #fff;
+	border: 1px solid #ff6700;
+	color: #ff6700;
+	text-align: center;
+}
+
+.no-select-tip .arrow {
+	display: block;
+	width: 0;
+	height: 0;
+	border-style: solid dashed dashed;
+	overflow: hidden;
+	position: absolute;
+	left: 50%;
+}
+
+.no-select-tip .arrow-a {
+	bottom: -8px;
+	margin-left: -10px;
+	border-width: 8px 10px 0;
+	border-color: #ff6700 transparent transparent;
+	z-index: 1;
+}
+
+.no-select-tip .arrow-b {
+	bottom: -7px;
+	margin-left: -8px;
+	border-width: 7px 8px 0;
+	border-color: #fff transparent transparent;
+	z-index: 2;
+}

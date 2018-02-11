@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.question.mapper.StudentCheckQuestionMapper">
+	<sql id="Base_Column_List">
+		scq.id,scq.create_question_code,scq.title,scq.time,scq.remark
+	</sql>
+	<resultMap id="questionResult" type="com.question.model.StudentCheckQuestionModel">
+		<result column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="create_question_code" property="createQuestionCode" />
+		<result column="remark" property="remark" />
+		<result column="time" property="time" />
+		<association property="userInfor" javaType="com.system.model.UserModel">
+			<result property="trueName" column="true_name" />
+		</association>
+		<association property="createQuestionInfor" javaType="com.question.model.CreateQuestionModel">
+		    <result column="cqId" property="id" />
+			<result property="questionName" column="question_name" />
+		</association>
+		<association property="questionQaInfor" javaType="com.question.model.QuestionQaModel">
+			<result property="tm" column="tm" />
+			<result property="a" column="a" />
+			<result property="b" column="b" />
+			<result property="c" column="c" />
+			<result property="d" column="d" />
+			<result property="daan" column="daan" />
+			<result property="tmtype" column="tmtype" />
+		</association>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and scq.id = #{id}
+			</if>
+			<if test="time != null and time != ''">
+				and scq.time = #{time}
+			</if>
+			<if test="title != null and title != ''">
+				and scq.title = #{title}
+			</if>
+			<if test="remark != null and remark != ''">
+				and scq.remark = #{remark}
+			</if>
+			<if test="createQuestionCode != null and createQuestionCode != ''">
+				and scq.create_question_code = #{createQuestionCode}
+			</if>
+		</trim>
+	</sql>
+	<insert id="insert">
+		INSERT INTO
+		manage.student_check_question(
+		create_question_code,title,time,remark)
+		VALUES
+		(#{createQuestionCode},#{title},#{time},#{remark})
+	</insert>
+
+	<select id="selectAll" resultMap="questionResult" parameterType="Object">
+		SELECT 
+		<include refid="Base_Column_List"/>
+		, cq.question_name,cq.id as cqId,u.true_name,qq.* FROM
+		manage.student_check_question scq
+		left join manage.creat_question_question_qa_rel rel on
+		scq.create_question_code=rel.create_question_code
+		left join manage.creat_question cq on
+		cq.create_question_code=scq.create_question_code
+		left join manage.question_qa qq on
+		qq.question_qa_code=rel.question_qa_code
+		left join manage.user u on u.user_name= cq.user_name
+		<include refid="Example_Where_Clause" />
+	</select>
+
+</mapper>

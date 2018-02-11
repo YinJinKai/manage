@@ -1,0 +1,3 @@
+var project = {
+		name:"/manage/"
+}

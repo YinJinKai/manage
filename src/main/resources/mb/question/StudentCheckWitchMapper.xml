@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.question.mapper.StudentCheckWitchMapper">
+	<sql id="Base_Column_List">
+		mq.id,mq.titleid,mq.level,mq.create_question_code,mq.user_name
+	</sql>
+	<resultMap id="questionResult"  type="com.question.model.StudentCheckWitchModel">
+		<result column="id" property="id" />
+		<result column="create_question_code" property="createQuestionCode" />
+		<result column="titleid" property="titleid" />
+		<result column="user_name" property="userName" />
+		<result column="level" property="level" />
+		<result property="trueName" column="true_name" />
+		<result property="questionName" column="question_name" />
+		<result property="tm" column="tm" />
+		<result property="a" column="a" />
+		<result property="b" column="b" />
+		<result property="c" column="c" />
+		<result property="d" column="d" />
+		<result property="daan" column="daan" />
+		<result property="tmtype" column="tmtype" />
+		<result property="title" column="title" />
+		<result property="daName" column="da_name" />
+		<association property="userInfor" javaType="com.system.model.UserModel">
+			<result property="trueName" column="true_name" />
+		</association>
+		<association property="createQuestionInfor"
+			javaType="com.question.model.CreateQuestionModel">
+			<result property="questionName" column="question_name" />
+		</association>
+		<association property="questionQaInfor" javaType="com.question.model.QuestionQaModel">
+			<result property="tm" column="tm" />
+			<result property="a" column="a" />
+			<result property="b" column="b" />
+			<result property="c" column="c" />
+			<result property="d" column="d" />
+			<result property="daan" column="daan" />
+			<result property="tmtype" column="tmtype" />
+		</association>
+		<association property="studentCheckInfor"
+			javaType="com.question.model.StudentCheckQuestionModel">
+			<result property="title" column="title" />
+		</association>
+		<association property="answerInfor"
+			javaType="com.question.model.StudentAnswerModel">
+			<result property="daName" column="da_name" />
+		</association>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and mq.id = #{id}
+			</if>
+			<if test="createQuestionCode != null and createQuestionCode != ''">
+				and mq.create_question_code = #{createQuestionCode}
+			</if>
+			<if test="userName != null and userName != ''">
+				and mq.user_name = #{userName}
+			</if>
+			<if test="level != null and level != ''">
+				and mq.level = #{level}
+			</if>
+			<if test="titleid != null and titleid !=0">
+				and mq.titleid = #{titleid}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectAll"  resultMap="questionResult" parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		cq.question_name,
+		scq.title,u.true_name,qqa.tm,qqa.A,qqa.B,qqa.C,qqa.D,qqa.daan,qd.da_name,qqa.tmtype
+		FROM
+		manage.question mq
+		left join manage.student_check_question scq on
+		mq.titleid=scq.id
+		left join manage.user u on u.user_name=mq.user_name
+		left join manage.question_da qd on qd.witch_id =mq.id
+		left join
+		manage.question_qa qqa on qqa.question_qa_code=qd.question_qa_code
+		left join manage.creat_question cq on
+		cq.create_question_code=mq.create_question_code
+		<include refid="Example_Where_Clause" />
+	</select>
+	<insert id="insert">
+		INSERT INTO
+		manage.question(user_name,
+		create_question_code,titleid,level)
+		VALUES
+		(#{userName},#{createQuestionCode},#{titleid},#{level})
+	</insert>
+	<update id="update">
+		UPDATE manage.question SET
+		<trim suffixOverrides=",">
+			<if test="level != null and level !='' ">
+				level = #{level},
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+</mapper>

@@ -1,0 +1,40 @@
+{
+	"xuesheng": [
+		{
+			"name": "80%学生",
+			"value": "80"
+		},
+		{
+			"name": "invisible",
+			"itemStyle": "placeHolderStyle",
+			"value": 20
+		}
+	],
+	"jiangshi": [
+		{
+			"name": "15%讲师",
+			"value": "15"
+		},
+		{
+			"name": "invisible",
+			"itemStyle": "placeHolderStyle",
+			"value": 85
+		}
+	],
+	"jiaowu": [
+		{
+			"name": "5%教务",
+			"value": "5"
+		},
+		{
+			"name": "invisible",
+			"itemStyle": "placeHolderStyle",
+			"value": 95
+		}
+	],
+	"userCountInfor": [
+		"80%学生",
+		"15%讲师",
+		"5%教务"
+	]
+}

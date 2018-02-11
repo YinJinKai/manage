@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.system.mapper.ClassMapper">
+	<sql id="Base_Column_List">
+		c.id,c.create_time,c.update_time,c.create_by,
+		c.update_by,c.isdelete,c.state,c.order_by,c.descr,c.type,c.class_name,c.class_code,c.user_name
+	</sql>
+	<resultMap id="classResult" type="com.system.model.ClassModel">
+		<result column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="create_by" property="createBy" />
+		<result column="update_by" property="updateBy" />
+		<result column="isdelete" property="deleted" />
+		<result column="state" property="state" />
+		<result column="order_by" property="orderBy" />
+		<result column="descr" property="descr" />
+		<result column="type" property="type" />
+		<result column="class_name" property="className" />
+		<result column="class_code" property="classCode" />
+		<result column="user_name" property="userName" />
+		<result column="true_name" property="trueName" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and c.id = #{id}
+			</if>
+			<if test="className != null and className != ''">
+				and c.class_name = #{className}
+			</if>
+			<if test="classCode != null and classCode != ''">
+				and c.class_code = #{classCode}
+			</if>
+			<if test="userName != null and userName != ''">
+				and c.user_name = #{userName}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectAll" resultMap="classResult" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		,u.true_name
+		from manage.class c
+		left join manage.user u
+		on c.user_name=u.user_name
+		<include refid="Example_Where_Clause" />
+	</select>
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from manage.class c left join manage.user u on c.class_code=u.class_code
+		<include refid="Example_Where_Clause" />
+	</select>
+		<insert id="insert">
+		INSERT INTO
+		manage.class(class_name,class_code,user_name)
+		VALUES
+		(#{className},#{classCode},#{userName})
+	</insert>
+		<update id="update">
+		UPDATE manage.class SET
+		<trim suffixOverrides=",">
+			<if test="className != null and className !=''">
+				class_name = #{className},
+			</if>
+			<if test="classCode != null and classCode !=''">
+				class_code = #{classCode},
+			</if>
+			<if test="userName != null and userName !=''">
+				user_name = #{userName},
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+</mapper>

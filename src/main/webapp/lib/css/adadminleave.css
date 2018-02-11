@@ -1,0 +1,80 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+ul,li{
+	list-style: none;
+}
+.add_new{
+	background:#eee; 
+	height:60px;
+	text-align: center;
+	overflow: hidden;
+	
+}
+.loginbody_mask {
+	display: none;
+	width: 100%;
+	height: 1679px;
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+
+}
+.addbox{
+	width:400px;
+	height:40px;
+	margin:0 auto;
+	margin-top: 10px;
+}
+.lable{
+	float: left;
+}
+.inbox{
+	float:right;
+}
+.why{
+	height:180px;
+}
+.leave_btn{
+	width: 200px;
+	margin: 0 auto;
+}
+.menubox{
+	width: 100%;
+}
+.menubox li{
+	width:100%;
+	margin-top: 20px;
+	text-align: center;
+}
+.menubox li a{
+	font-weight: bold;
+	font-size: 25px;
+}
+.intool{
+	width: 100%;
+	height: 30px;
+	margin-top:16px;
+	
+}
+.inadd{
+	width:100%;
+	height:40px;
+	margin-top: 13px;
+}
+.search{
+	display:inline-block;
+	width:535px;
+	height:33px;
+}
+.timebox{
+	margin-left: 20px;
+}
+.classbox{
+	margin-left:20px;
+}

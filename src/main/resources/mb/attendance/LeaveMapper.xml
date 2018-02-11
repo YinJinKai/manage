@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.attendance.mapper.LeaveMapper">
+	<sql id="Base_Column_List">
+		sl.id,sl.create_time,sl.update_time, sl.create_by,
+		sl.update_by,sl.isdelete,sl.state,sl.order_by,sl.descr,sl.type
+		,sl.user_name,sl.why,sl.leave_time,sl.start_time,sl.end_time,sl.status
+	</sql>
+	<resultMap id="leaveResult" type="com.attendance.model.LeaveModel">
+		<result column="id" property="id" />
+		<result column="create_time" property="createTime" />
+		<result column="update_time" property="updateTime" />
+		<result column="create_by" property="createBy" />
+		<result column="update_by" property="updateBy" />
+		<result column="isdelete" property="deleted" />
+		<result column="state" property="state" />
+		<result column="order_by" property="orderBy" />
+		<result column="descr" property="descr" />
+		<result column="type" property="type" />
+		<result column="user_name" property="userName" />
+		<result column="why" property="why" />
+		<result column="leave_time" property="leaveTime" />
+		<result column="start_time" property="startTime" />
+		<result column="end_time" property="endTime" />
+		<result column="status" property="status" />
+		<result property="name" column="true_name" />
+		<result property="trueName" column="true_name" />
+		<association property="userInfor" javaType="com.system.model.UserModel">
+			<result property="trueName" column="true_name" />
+		</association>
+		<association property="classInfor" javaType="com.system.model.ClassModel">
+			<result property="className" column="class_name" />
+		</association>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and sl.id = #{id}
+			</if>
+			<if test="userName != null and userName != ''">
+				and sl.user_name = #{userName}
+			</if>
+			<if test="why != null and why != ''">
+				and sl.why = #{why}
+			</if>
+			<if
+				test="startTime != null and startTime != '' and endTime !=null  and endTime !=''">
+				and sl.create_time between #{startTime} and #{endTime}
+			</if>
+			<if test="status != null and status != ''">
+				and sl.status = #{status}
+			</if>
+			<if test="teacherName != null and teacherName != ''">
+				and c.user_name = #{teacherName}
+			</if>
+			<if test="classCode != null and classCode != ''">
+				and c.class_code = #{classCode}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectAll" resultMap="leaveResult" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		,u.true_name
+		FROM manage.stleave sl
+		left join manage.user u
+		on
+		u.user_name=sl.user_name
+		left join manage.class c on
+		u.class_code=c.class_code
+		<include refid="Example_Where_Clause" />
+		<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) FROM manage.stleave sl
+		left join manage.user u
+		on sl.user_name=u.user_name
+		left join manage.class c on
+		u.class_code=c.class_code
+		<include refid="Example_Where_Clause" />
+		<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+	<insert id="insert" parameterType="Object">
+		insert into
+		manage.stleave
+		(create_time,
+		update_time,create_by,update_by,isdelete,state,order_by,descr,type,user_name,why,leave_time,start_time,end_time,status,admin_confirm,teacher_confirm)
+		values(#{createTime},#{updateTime},#{createBy},#{updateBy},#{deleted},#{state},#{orderBy},#{descr},#{type}
+		,#{userName},#{why},#{leaveTime},#{startTime},#{endTime},#{status})
+	</insert>
+	<!-- 老师管理请假 -->
+	<select id="selectByteacher" resultMap="leaveResult"
+		parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		c.class_name,
+		u.true_name
+		FROM manage.stleave sl
+		left join manage.user u
+		on sl.user_name=u.user_name
+		left join manage.class c on
+		u.class_code=c.class_code
+		<include refid="Example_Where_Clause" />
+		<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+	<!-- 教师处理申请 -->
+	<update id="update">
+		UPDATE manage.stleave SET
+		<trim suffixOverrides=",">
+			<if test="status != null and status !='' ">
+				status = #{status},
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+</mapper>

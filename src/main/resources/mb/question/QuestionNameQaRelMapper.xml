@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.question.mapper.QuestionNameQaRelMapper">
+	<sql id="Base_Column_List">
+		r.id,r.create_question_code,r.question_qa_code,r.order_by
+	</sql>
+	<resultMap id="questionResult" type="com.question.model.QuestionNameQaRelModel">
+		<result column="id" property="id" />
+		<result column="create_question_code" property="createQuestionCode" />
+		<result column="question_qa_code" property="questionQaCode" />
+		<result column="order_by" property="orderBy" />
+		<association property="userInfor" javaType="com.system.model.UserModel">
+			<result property="trueName" column="true_name" />
+		</association>
+		<association property="createQuestionInfor" javaType="com.question.model.CreateQuestionModel">
+		    <result column="cqId" property="id" />
+			<result property="questionName" column="question_name" />
+		</association>
+		<association property="questionQaInfor" javaType="com.question.model.QuestionQaModel">
+			<result property="tm" column="tm" />
+			<result property="a" column="a" />
+			<result property="b" column="b" />
+			<result property="c" column="c" />
+			<result property="d" column="d" />
+			<result property="daan" column="daan" />
+			<result property="tmtype" column="tmtype" />
+		</association>
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and r.id = #{id}
+			</if>
+			<if test="questionQaCode != null and questionQaCode != ''">
+				and r.question_qa_code = #{questionQaCode}
+			</if>
+			<if test="createQuestionCode != null and createQuestionCode != ''">
+				and r.create_question_code = #{createQuestionCode}
+			</if>
+			<if test="orderBy != null and orderBy != ''">
+				and r.order_by = #{orderBy}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectAll" resultMap="questionResult" parameterType="Object">		
+		SELECT
+		<include refid="Base_Column_List" />,
+		 cq.question_name,cq.id as cqId,u.true_name,qq.*
+		FROM
+		manage.creat_question_question_qa_rel r
+		left join manage.creat_question cq on
+		cq.create_question_code=r.create_question_code
+		left join manage.question_qa qq on qq.question_qa_code=r.question_qa_code
+		left join manage.user u on u.user_name= cq.user_name
+		<include refid="Example_Where_Clause" />
+		<if test="pager.orderCondition != null and pager.orderCondition != ''">
+			${pager.orderCondition}
+		</if>
+	</select>
+	<insert id="insert">
+		INSERT INTO
+		manage.creat_question_question_qa_rel(create_question_code,
+		question_qa_code,order_by)
+		VALUES
+		(#{createQuestionCode},#{questionQaCode},#{orderBy})
+	</insert>
+	<delete id="delete" >
+	DELETE FROM manage.creat_question_question_qa_rel WHERE id=#{id}
+	</delete>
+	<update id="update">
+	UPDATE manage.creat_question_question_qa_rel SET
+		<trim suffixOverrides=",">
+			<if test="orderBy != null">
+				order_by = #{orderBy},
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+</mapper>

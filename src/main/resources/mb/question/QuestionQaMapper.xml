@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.question.mapper.QuestionQaMapper">
+	<sql id="Base_Column_List">
+		id,question_qa_code,tm,A,B,C,D,daan,tmtype
+	</sql>
+	<resultMap id="questionResult" type="com.question.model.QuestionQaModel">
+		<result column="id" property="id" />
+		<result column="question_qa_code" property="questionQaCode" />
+		<result column="tm" property="tm" />
+		<result column="A" property="a" />
+		<result column="B" property="b" />
+		<result column="C" property="c" />
+		<result column="D" property="d" />
+		<result column="daan" property="daan" />
+		<result column="tmtype" property="tmtype" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id !=0">
+				and id = #{id}
+			</if>
+			<if test="questionQaCode != null and questionQaCode != ''">
+				and question_qa_code = #{questionQaCode}
+			</if>
+			<if test="tm != null and tm != ''">
+				and tm like CONCAT('%', #{tm}, '%')
+			</if>
+			<if test="a != null and a != ''">
+				and A = #{a}
+			</if>
+			<if test="b != null and b != ''">
+				and B = #{b}
+			</if>
+			<if test="c != null and c!= ''">
+				and C = #{c}
+			</if>
+			<if test="d != null and d != ''">
+				and D = #{d}
+			</if>
+			<if test="daan != null and daan != ''">
+				and daan = #{daan}
+			</if>
+			<if test="tmtype != null and tmtype != ''">
+				and tmtype = #{tmtype}
+			</if>
+		</trim>
+	</sql>
+	<select id="selectAll" resultMap="questionResult" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from manage.question_qa
+		<include refid="Example_Where_Clause" />
+		<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1)
+		from manage.question_qa
+		<include refid="Example_Where_Clause" />
+		<if
+			test="pager.mysqlQueryCondition != null and pager.mysqlQueryCondition != ''">
+			${pager.mysqlQueryCondition}
+		</if>
+	</select>
+	<insert id="insert">
+		INSERT INTO
+		manage.question_qa(question_qa_code,
+		tm,A,B,C,D,daan,tmtype)
+		VALUES
+		(#{questionQaCode},#{tm},#{a},#{b},#{c},#{d},#{daan},#{tmtype})
+	</insert>
+	<delete id="delete">
+		DELETE FROM manage.question_qa WHERE id=#{id}
+	</delete>
+	<update id="update">
+		UPDATE manage.question_qa SET
+		<trim suffixOverrides=",">
+			<if test="tm != null and tm !=''">
+				tm = #{tm},
+			</if>
+			<if test="a != null and a !=''">
+				a = #{a},
+			</if>
+			<if test="b != null and b !=''">
+				b = #{b},
+			</if>
+			<if test="c != null and c !=''">
+				c = #{c},
+			</if>
+			<if test="d != null and d !=''">
+				d = #{d},
+			</if>
+			<if test="daan != null and daan !=''">
+				daan = #{daan},
+			</if>
+		</trim>
+		where id = #{id}
+	</update>
+</mapper>
